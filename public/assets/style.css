@@ -3041,7 +3041,9 @@ pre {
 
 .main-sidebar,
 .navbar,
-.main-content,
+.main-content {
+  margin-left: 0 !important;
+}
 .main-footer {
   transition: all 0.5s;
 }
@@ -3180,7 +3182,7 @@ body.sidebar-mini .navbar {
   left: 65px;
 }
 body.sidebar-mini .main-content, body.sidebar-mini .main-footer {
-  padding-left: 90px;
+  padding-left: 0px;
 }
 
 body.layout-2 .navbar-bg {

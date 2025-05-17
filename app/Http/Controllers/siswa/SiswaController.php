@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Siswa;
 
-use App\Models\siswa;
+
+use App\Models\Siswa\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class SiswaController extends Controller
 {
