@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswas_alamats', function (Blueprint $table) {
+        Schema::create('siswas_alamat', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_siswa')->unique();
+            $table->unsignedBigInteger('siswa_id')->unique();
             $table->string('jalan', 50);
             $table->string('rt', 10);
             $table->string('rw', 10);
-            $table->string('kelurahan', 10);
-            $table->string('kecamatan', 10);
-            $table->string('dusun', 10);
+            $table->string('kelurahan');
+            $table->string('kecamatan');
+            $table->string('dusun');
             $table->string('kode_pos', 10);
+            $table->foreign('siswa_id')->references('id')->on('siswas')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('id_siswa')->references('id')->on('siswas')->onDelete('cascade');
         });
     }
     

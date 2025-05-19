@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('siswas_bantuans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_siswa')->unique();
+            $table->unsignedBigInteger('siswa_id')->unique();
             $table->string('jenis_tinggal', 25);
             $table->string('alat_transportasi', 25);
             $table->boolean('penerima_kps')->default(false);
             $table->boolean('penerima_kip')->default(false);
             $table->string('no_kip', 10)->nullable();
-            $table->string('no_krs')->nullable();
+            $table->string('no_kps')->nullable();
             $table->boolean('layak_pip')->default(false);
             $table->text('alasan_layak_pip')->nullable();
             $table->timestamps();
     
-            $table->foreign('id_siswa')->references('id')->on('siswas')->onDelete('cascade');
+            $table->foreign('siswa_id')->references('id')->on('siswas')->onDelete('cascade');
         });
     }
     

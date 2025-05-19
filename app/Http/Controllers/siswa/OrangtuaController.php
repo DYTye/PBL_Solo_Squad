@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Siswa;
 
-use App\Models\Guru;
 use Illuminate\Http\Request;
+use App\Models\Siswa\orangtua;
+use Illuminate\Routing\Controller;
 
-class GuruController extends Controller
+class OrangtuaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $gurus = Guru::all();
-        return view('guru',compact('gurus'));
+        //
     }
 
     /**
@@ -35,15 +35,16 @@ class GuruController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Guru $guru)
+    public function show($id)
     {
-        //
+        $orangtua = Orangtua::findOrFail($id);
+        return view('layouts.siswa.siswa_detail',compact('orangtua'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Guru $guru)
+    public function edit(orangtua $orangtua)
     {
         //
     }
@@ -51,7 +52,7 @@ class GuruController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Guru $guru)
+    public function update(Request $request, orangtua $orangtua)
     {
         //
     }
@@ -59,7 +60,7 @@ class GuruController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Guru $guru)
+    public function destroy(orangtua $orangtua)
     {
         //
     }

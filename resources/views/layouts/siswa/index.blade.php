@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Table Example')
+@section('title', 'Table siswa')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -23,33 +23,42 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>nama</th>
-                                <th>nipd</th>
-                                <th>kelamin</th>
-                                <th>tempat_lahir</th>
-                                <th>tanggal_lahir</th>
-                                <th>kelas</th>
-                                <th>agama</th>
+                                {{-- <th>No</th> --}}
+                                <th>Nama</th>
+                                <th>NIPD</th>
+                                <th>Kelamin</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Kelas</th>
+                                <th>Agama</th>
                                 <th>id_ibu</th>
-                                <th>kebutuhan_khusus</th>
-                                <th>sekolah_asal</th>
-                                <th>aksi</th>
+                                <th>Kebutuhan Khusus</th>
+                                <th>Sekolah Asal</th>
+                                <th>Aksi</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($siswas as $siswa)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                            <tr onclick="window.location='{{ route('siswadetail.show', $siswa->id) }}'" style="cursor:pointer;">
+
+
+                                    {{-- <td>{{ $loop->iteration }}</td> --}}
                                     <td>{{ $siswa->nama }}</td>
-                                    <td>{{ $siswa->jenis_kelamin }}</td>
-                                    <td>{{ $siswa->kelas }}</td>
+                                    <td>{{ $siswa->nipd }}</td>
+                                    <td>{{ $siswa->kelamin }}</td>
+                                    <td>{{ $siswa->tempat_lahir }}</td>
                                     <td>{{ $siswa->tanggal_lahir }}</td>
-                                    <td>{{ $siswa->alamat }}</td>
+                                    <td>{{ $siswa->kelas }}</td>
+                                    <td>{{ $siswa->agama }}</td>
+                                    <td>{{ $siswa->orangtua_id }}</td>
+                                    <td>{{ $siswa->kebutuhan_khusus }}</td>
+                                    <td>{{ $siswa->sekolah_asal }}</td>
+ 
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('siswa.edit', $siswa->id) }}"><button
-                                                    class="btn btn-warning ">edit
+                                                    class="btn btn-warning">edit
                                                 </button></a>
 
                                             <form action="" method="POST"
@@ -61,6 +70,7 @@
                                             </form>
                                         </div>
                                     </td>
+                                    
                             @endforeach
                             </tr>
                             </tr>

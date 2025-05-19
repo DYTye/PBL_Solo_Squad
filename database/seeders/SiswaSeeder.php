@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Siswa;
+use App\Models\siswa\Siswa;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -13,6 +13,6 @@ class SiswaSeeder extends Seeder
      */
     public function run(): void
     {
-        Siswa::factory()->count(10)->create();
+        
     }
 }
