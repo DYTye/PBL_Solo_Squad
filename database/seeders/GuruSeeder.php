@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guru;
+use App\Models\guru\Guru;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 

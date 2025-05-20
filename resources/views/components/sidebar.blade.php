@@ -38,7 +38,7 @@
                 <a class="nav-link" href="{{ url('clock-example') }}"><i class="fas fa-clock"></i> <span>Orang Tua dan Wali</span></a>
             </li>
             <li class="{{ Request::is('calendar-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('calendar-example') }}"><i class="fas fa-calendar"></i> <span>Guru</span></a>
+                <a class="nav-link" href="{{ url('guru') }}"><i class="fas fa-calendar"></i> <span>Guru</span></a>
             </li>
             <li class="{{ Request::is('gallery-example') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('gallery-example') }}"><i class="fas fa-images"></i> <span>Berita</span></a>

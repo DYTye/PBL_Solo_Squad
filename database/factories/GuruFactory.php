@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Guru;
+use App\Models\guru\Guru;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
