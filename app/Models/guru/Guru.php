@@ -1,67 +1,35 @@
 <?php
 
-namespace App\Models\guru;
+namespace App\Models\Guru;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\guru\AlamatGuru; // tambahkan ini
-use App\Models\guru\KompetensiGuru;
-
+use Illuminate\Database\Eloquent\Model;
+use Database\Factories\GuruFactory; // ini bisa tetap
 
 class Guru extends Model
 {
     use HasFactory;
 
+    protected static function newFactory()
+    {
+        return GuruFactory::new();
+    }
+
     protected $table = 'gurus';
 
     protected $fillable = [
-        'nama',
-        'nuptk',
-        'jenis_kelamin',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'nip',
-        'status_kepegawaian',
-        'jenis_ptk',
-        'agama',
-        'hp',
-        'email',
-        'tugas_tambahan',
-        'nama_ibu_kandung',
-        'status_perkawinan',
-        'npwp',
+        'nama', 'nuptk', 'nip', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'hp', 'email'
     ];
 
     protected $casts = [
-        'tanggal_lahir' => 'date:Y-m-d',
+        'tanggal_lahir' => 'date',
     ];
 
-    public function alamat()
-    {
-        return $this->hasOne(AlamatGuru::class, 'id_guru');
-    }
+    public $timestamps = true;
 
-    public function kompetensi()
+    public function detail()
 {
-    return $this->hasMany(KompetensiGuru::class, 'guru_id', 'id');
+    return $this->hasOne(GuruDetail::class, 'gurus_id');
 }
 
-
-    protected static function booted()
-{
-    static::deleting(function ($guru) {
-        $guru->alamat()?->delete();
-        $guru->kompetensi()?->delete();
-    });
-}
-
-    // public function pasangan()
-    // {
-    //     return $this->hasMany(PasanganGuru::class, 'guru_id');
-    // }
-
-    // public function pengangkatan()
-    // {
-    //     return $this->hasMany(PengangkatanGuru::class, 'guru_id');
-    // }
 }

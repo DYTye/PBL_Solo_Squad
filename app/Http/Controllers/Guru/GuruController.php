@@ -3,92 +3,79 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
-use App\Models\guru\Guru;
 use Illuminate\Http\Request;
+use App\Models\Guru\Guru;
 
 class GuruController extends Controller
 {
+    // Tampilkan semua data guru
     public function index()
     {
         $gurus = Guru::all();
         return view('layouts.guru.index', compact('gurus'));
     }
 
+    // Tampilkan form tambah guru
     public function create()
     {
-        return view('layouts.guru.create'); // Pastikan file create.blade.php ada
+        return view('layouts.guru.create');
     }
 
+    // Simpan data guru baru
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama' => 'required|string|max:255',
-            'nuptk' => 'nullable|string|max:255',
+            'nama'          => 'required|string|max:255',
+            'nuptk'         => 'required|string|unique:gurus,nuptk|max:50',
+            'nip'           => 'nullable|string|unique:gurus,nip|max:50',
             'jenis_kelamin' => 'required|in:L,P',
-            'tempat_lahir' => 'nullable|string|max:255',
+            'tempat_lahir'  => 'nullable|string|max:100',
             'tanggal_lahir' => 'nullable|date',
-            'nip' => 'nullable|string|max:255',
-            'status_kepegawaian' => 'nullable|string|max:255',
-            'jenis_ptk' => 'nullable|string|max:255',
-            'agama' => 'nullable|string|max:255',
-            'hp' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
-            'tugas_tambahan' => 'nullable|string|max:255',
-            'nama_ibu_kandung' => 'nullable|string|max:255',
-            'status_perkawinan' => 'nullable|string|max:255',
-            'npwp' => 'nullable|string|max:255',
+            'agama'         => 'nullable|string|max:50',
+            'hp'            => 'nullable|string|max:20',
+            'email'         => 'nullable|email|max:255',
         ]);
 
         Guru::create($validated);
-        return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan.');
+
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan');
     }
 
-    public function edit(Guru $guru)
+    // Tampilkan form edit data guru
+    public function edit($id)
     {
-        return view('layouts.guru.update', compact('guru')); // Pastikan file edit.blade.php ada
+        $guru = Guru::findOrFail($id);
+        return view('layouts.guru.edit', compact('guru'));
     }
 
-    public function update(Request $request, Guru $guru)
+    // Update data guru
+    public function update(Request $request, $id)
     {
+        $guru = Guru::findOrFail($id);
+
         $validated = $request->validate([
-            'nama' => 'required|string|max:255',
-            'nuptk' => 'nullable|string|max:255',
+            'nama'          => 'required|string|max:255',
+            'nuptk'         => 'required|string|unique:gurus,nuptk,' . $guru->id . '|max:50',
+            'nip'           => 'nullable|string|unique:gurus,nip,' . $guru->id . '|max:50',
             'jenis_kelamin' => 'required|in:L,P',
-            'tempat_lahir' => 'nullable|string|max:255',
+            'tempat_lahir'  => 'nullable|string|max:100',
             'tanggal_lahir' => 'nullable|date',
-            'nip' => 'nullable|string|max:255',
-            'status_kepegawaian' => 'nullable|string|max:255',
-            'jenis_ptk' => 'nullable|string|max:255',
-            'agama' => 'nullable|string|max:255',
-            'hp' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
-            'tugas_tambahan' => 'nullable|string|max:255',
-            'nama_ibu_kandung' => 'nullable|string|max:255',
-            'status_perkawinan' => 'nullable|string|max:255',
-            'npwp' => 'nullable|string|max:255',
+            'agama'         => 'nullable|string|max:50',
+            'hp'            => 'nullable|string|max:20',
+            'email'         => 'nullable|email|max:255',
         ]);
 
         $guru->update($validated);
-        return redirect()->route('guru.index')->with('success', 'Data guru berhasil diupdate.');
+
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil diperbarui');
     }
 
-    public function destroy(Guru $guru)
+    // Hapus data guru
+    public function destroy($id)
     {
+        $guru = Guru::findOrFail($id);
         $guru->delete();
-        return redirect()->route('guru.index')->with('success', 'Data guru berhasil dihapus.');
+
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil dihapus');
     }
-
-    public function show($id)
-{
-    $guru = Guru::with(['alamat', 'kompetensi', 'pasangan', 'pengangkatan'])->findOrFail($id);
-    return view('layouts.guru.show', compact('guru'));
-}
-
-public function detail($id)
-{
-    $guru = Guru::with(['alamat', 'kompetensi'])->findOrFail($id);
-    return view('layouts.guru.detail', compact('guru'));
-}
-
-
 }

@@ -1,14 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Siswa\SiswaController;
-use App\Http\Controllers\Guru\GuruController;
-use App\Http\Controllers\guru\AlamatGuruController;
-use App\Http\Controllers\guru\KompetensiGuruController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HakaksesController;
+use App\Http\Controllers\Guru\GuruController;
+use App\Http\Controllers\Guru\GuruDetailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,9 +16,10 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
-    // Home & Profile
+    // Home
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    // Profile
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
         Route::put('/update', [ProfileController::class, 'update'])->name('update');
@@ -28,41 +27,29 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/password', [ProfileController::class, 'password'])->name('password');
     });
 
-    // Guru & Siswa Resource
-    Route::get('/guru/{id}/detail', [GuruController::class, 'detail'])->name('guru.detail');
-
+    // Guru & Guru Detail
     Route::resource('guru', GuruController::class);
-    Route::resource('siswa', SiswaController::class);
 
-    // Alamat Guru - Nested routes di bawah guru
-    Route::prefix('guru/{guru}/alamat')->name('alamatguru.')->group(function () {
-        Route::get('/', [AlamatGuruController::class, 'show'])->name('show');
-        Route::get('/create', [AlamatGuruController::class, 'create'])->name('create');
-        Route::post('/', [AlamatGuruController::class, 'store'])->name('store');
-        Route::get('/edit', [AlamatGuruController::class, 'edit'])->name('edit');
-        Route::put('/', [AlamatGuruController::class, 'update'])->name('update');
-        Route::delete('/', [AlamatGuruController::class, 'destroy'])->name('destroy');
+    Route::prefix('guru/{guru}')->name('guru.detail.')->group(function () {
+        Route::get('detail', [GuruDetailController::class, 'show'])->name('show');
+        Route::get('detail/create', [GuruDetailController::class, 'create'])->name('create');
+        Route::post('detail', [GuruDetailController::class, 'store'])->name('store');
+        Route::get('detail/edit', [GuruDetailController::class, 'edit'])->name('edit');
+        Route::put('detail', [GuruDetailController::class, 'update'])->name('update');
+        Route::delete('detail', [GuruDetailController::class, 'destroy'])->name('destroy');
     });
 
-    // Kompetensi Guru - Resource nested
-    Route::prefix('guru/{guru}/kompetensi')->name('kompetensiguru.')->group(function () {
-        Route::get('/', [KompetensiGuruController::class, 'index'])->name('index');
-        Route::get('/create', [KompetensiGuruController::class, 'create'])->name('create');
-        Route::post('/', [KompetensiGuruController::class, 'store'])->name('store');
-        Route::get('/{kompetensi}/edit', [KompetensiGuruController::class, 'edit'])->name('edit');
-        Route::put('/{kompetensi}', [KompetensiGuruController::class, 'update'])->name('update');
-        Route::delete('/{kompetensi}', [KompetensiGuruController::class, 'destroy'])->name('destroy');
-    });
 
-    // Hak Akses - Middleware khusus superadmin
-    Route::middleware('superadmin')->prefix('hakakses')->name('hakakses.')->group(function () {
+
+    // Hak Akses (hanya bisa diakses oleh superadmin)
+    Route::middleware(['superadmin'])->prefix('hakakses')->name('hakakses.')->group(function () {
         Route::get('/', [HakaksesController::class, 'index'])->name('index');
         Route::get('/edit/{id}', [HakaksesController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [HakaksesController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [HakaksesController::class, 'destroy'])->name('delete');
     });
 
-    // Contoh Halaman (Example)
+    // Contoh Halaman (Example Pages)
     Route::prefix('example')->name('example.')->group(function () {
         Route::get('/table', [ExampleController::class, 'table'])->name('table');
         Route::get('/clock', [ExampleController::class, 'clock'])->name('clock');
