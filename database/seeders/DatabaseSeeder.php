@@ -7,10 +7,9 @@ use App\Models\Guru;
 use App\Models\User;
 use App\Models\Siswa\Siswa;
 use App\Models\Siswa\orangtua;
-use App\Models\siswa\SiswasAlamat;
-use App\Models\siswa\SiswasBantuan;
-use App\Models\siswa\SiswasDetail;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,21 +26,28 @@ class DatabaseSeeder extends Seeder
         ]);
         $orangtuas = Orangtua::factory()->count(10)->create();
 
-        // Untuk tiap orangtua, buat 1 siswa dan alamat
+        // Buat siswa 10 dengan relasi ke orangtua yang sudah dibuat
+
+        $orangtuas = OrangTua::factory(10)->create();
         foreach ($orangtuas as $orangtua) {
-            $siswa = Siswa::factory()->create([
+            Siswa::factory()->create([
                 'orangtua_id' => $orangtua->id,
             ]);
         
-            // ✅ Lebih aman begini
-            
-            SiswasDetail::factory()->for($siswa)->create();
-            SiswasAlamat::factory()->for($siswa)->create();
-            SiswasBantuan::factory()->for($siswa)->create();
-        }
+
+        DB::table('kelas')->insert([
+            ['nama' => 'A'],
+            ['nama' => 'B1'],
+            ['nama' => 'B2'],
+            ['nama' => 'B3'],
+            ['nama' => 'B4'],
+            ['nama' => 'B5'],
+            ['nama' => 'B6'],
+        ]);
         
         
 
         }
         
     }
+}

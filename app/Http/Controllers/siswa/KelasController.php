@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\siswa;
 
-use App\Models\SiswasDetail;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class SiswasDetailController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class SiswasDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SiswasDetail $siswasDetail)
+    public function show(Kelas $kelas)
     {
         //
     }
@@ -43,7 +43,7 @@ class SiswasDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SiswasDetail $siswasDetail)
+    public function edit(Kelas $kelas)
     {
         //
     }
@@ -51,7 +51,7 @@ class SiswasDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SiswasDetail $siswasDetail)
+    public function update(Request $request, Kelas $kelas)
     {
         //
     }
@@ -59,7 +59,7 @@ class SiswasDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SiswasDetail $siswasDetail)
+    public function destroy(Kelas $kelas)
     {
         //
     }

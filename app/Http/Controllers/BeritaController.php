@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers\Siswa;
 
-use App\Models\siswa\Siswa;
+use App\Models\Berita;
 use Illuminate\Http\Request;
-use App\Models\siswa\Orangtua;
-use App\Models\Siswa\SiswasAlamat;
-use App\Models\siswa\SiswasDetail;
-use Illuminate\Routing\Controller;
-use App\Models\siswa\SiswasBantuan;
+use Symfony\Contracts\Service\Attribute\Required;
 
-class SiswasAlamatController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $sAlamat = SiswasAlamat::all();
-        // return view('layouts.siswa.siswa_detail',compact('sAlamat'));
+        $beritas = Berita::all();
+        return view('layouts.berita.index',compact('beritas'));
+        
     }
 
     /**
@@ -26,7 +23,7 @@ class SiswasAlamatController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.berita.create');
     }
 
     /**
@@ -34,13 +31,21 @@ class SiswasAlamatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'judul_berita' => 'required|string|',
+            'isi_berita' => 'required|string',
+            'gambar' => 'required|image|max:2048'
+        ]);
+
+        $beritas = Berita::create($validated);
+
+        return redirect()->route('berita.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Berita $berita)
     {
         $siswa = Siswa::with(['alamat', 'orangtua', 'detail', 'bantuan'])->findOrFail($id);
 
@@ -60,7 +65,7 @@ class SiswasAlamatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SiswasAlamat $siswasAlamat)
+    public function edit(Berita $berita)
     {
         //
     }
@@ -68,7 +73,7 @@ class SiswasAlamatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SiswasAlamat $siswasAlamat)
+    public function update(Request $request, Berita $berita)
     {
         //
     }
@@ -76,7 +81,7 @@ class SiswasAlamatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SiswasAlamat $siswasAlamat)
+    public function destroy(Berita $berita)
     {
         //
     }

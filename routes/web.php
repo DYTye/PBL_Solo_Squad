@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GuruController;
-use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Siswa\SiswasAlamatController;
+use App\Http\Controllers\Siswa\SiswaController;
+use App\Http\Controllers\Siswa\SiswasDetailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,8 +16,9 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/siswa',SiswaController::class);
+    Route::resource('berita',BeritaController::class);
     
-    Route::resource('siswadetail',SiswasAlamatController::class);
+    Route::resource('siswadetail',SiswaController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
