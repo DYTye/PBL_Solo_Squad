@@ -9,6 +9,7 @@ class GuruSeeder extends Seeder
 {
     public function run()
     {
+        // Generate 50 data guru contoh
         Guru::factory()->count(10)->create();
     }
 }

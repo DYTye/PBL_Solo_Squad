@@ -26,42 +26,30 @@
                         <th>NUPTK</th>
                         <th>NIP</th>
                         <th>Jenis Kelamin</th>
-                        {{-- <th>Tempat Lahir</th>
+                        <th>Tempat Lahir</th>
                         <th>Tanggal Lahir</th>
-                        <th>Agama</th> --}}
+                        <th>Agama</th>
                         <th>HP</th>
                         <th>Email</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($gurus as $index => $guru)
-                    <tr onclick="window.location='{{ route('guru.detail.show', $guru->id) }}'" style="cursor: pointer;">
-
+                    <tr onclick="window.location='{{ route('guru.detail', $guru->id) }}'" style="cursor: pointer;">
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $guru->nama }}</td>
                         <td>{{ $guru->nuptk }}</td>
                         <td>{{ $guru->nip ?? '-' }}</td>
                         <td>{{ $guru->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
-                        {{-- <td>{{ $guru->tempat_lahir ?? '-' }}</td>
+                        <td>{{ $guru->tempat_lahir ?? '-' }}</td>
                         <td>{{ $guru->tanggal_lahir ? $guru->tanggal_lahir->format('d-m-Y') : '-' }}</td>
-                        <td>{{ $guru->agama ?? '-' }}</td> --}}
+                        <td>{{ $guru->agama ?? '-' }}</td>
                         <td>{{ $guru->hp ?? '-' }}</td>
                         <td>{{ $guru->email ?? '-' }}</td>
-                        <td>
-                            <a href="{{ route('guru.edit', $guru->id) }}" class="btn btn-warning btn-sm" onclick="event.stopPropagation();">Edit</a>
-
-                            <form action="{{ route('guru.destroy', $guru->id) }}" method="POST" style="display:inline-block;" onsubmit="event.stopPropagation(); return confirm('Yakin ingin hapus data guru ini?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="event.stopPropagation();">Hapus</button>
-                            </form>
-
-                        </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="11" class="text-center">Belum ada data guru.</td>
+                        <td colspan="10" class="text-center">Belum ada data guru.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -70,14 +58,4 @@
     </div>
 </section>
 </div>
-
 @endsection
-
-@push('scripts')
-<script>
-    // Jika kamu menggunakan DataTables, aktifkan script ini
-    // $(document).ready(function () {
-    //     $('#table-guru').DataTable();
-    // });
-</script>
-@endpush

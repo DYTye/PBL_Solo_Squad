@@ -3,14 +3,14 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\GuruSeeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Jalankan semua seeder aplikasi.
-     */
     public function run()
-{
-    $this->call(GuruSeeder::class);
-}
+    {
+        $this->call([
+            GuruSeeder::class,
+        ]);
+    }
 }

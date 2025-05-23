@@ -6,7 +6,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HakaksesController;
 use App\Http\Controllers\Guru\GuruController;
-use App\Http\Controllers\Guru\GuruDetailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,21 +26,11 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/password', [ProfileController::class, 'password'])->name('password');
     });
 
-    // Guru & Guru Detail
+    // Guru (CRUD + Detail)
     Route::resource('guru', GuruController::class);
+    Route::get('/guru/{id}/detail', [GuruController::class, 'detail'])->name('guru.detail');
 
-    Route::prefix('guru/{guru}')->name('guru.detail.')->group(function () {
-        Route::get('detail', [GuruDetailController::class, 'show'])->name('show');
-        Route::get('detail/create', [GuruDetailController::class, 'create'])->name('create');
-        Route::post('detail', [GuruDetailController::class, 'store'])->name('store');
-        Route::get('detail/edit', [GuruDetailController::class, 'edit'])->name('edit');
-        Route::put('detail', [GuruDetailController::class, 'update'])->name('update');
-        Route::delete('detail', [GuruDetailController::class, 'destroy'])->name('destroy');
-    });
-
-
-
-    // Hak Akses (hanya bisa diakses oleh superadmin)
+    // Hak Akses (Superadmin Only)
     Route::middleware(['superadmin'])->prefix('hakakses')->name('hakakses.')->group(function () {
         Route::get('/', [HakaksesController::class, 'index'])->name('index');
         Route::get('/edit/{id}', [HakaksesController::class, 'edit'])->name('edit');
@@ -49,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', [HakaksesController::class, 'destroy'])->name('delete');
     });
 
-    // Contoh Halaman (Example Pages)
+    // Contoh Halaman
     Route::prefix('example')->name('example.')->group(function () {
         Route::get('/table', [ExampleController::class, 'table'])->name('table');
         Route::get('/clock', [ExampleController::class, 'clock'])->name('clock');
@@ -68,3 +57,4 @@ Route::middleware(['auth'])->group(function () {
     // Halaman Kosong
     Route::get('/blank-page', [HomeController::class, 'blank'])->name('blank');
 });
+
