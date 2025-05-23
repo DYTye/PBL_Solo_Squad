@@ -2,17 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guru;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Guru\Guru;
 
 class GuruSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
+        // Generate 50 data guru contoh
         Guru::factory()->count(10)->create();
     }
 }

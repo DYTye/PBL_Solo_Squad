@@ -35,7 +35,7 @@
                 <a class="nav-link" href="{{ url('siswa') }}"><i class="fas fa-table"></i> <span>Siswa</span></a>
             </li>
             <li class="{{ Request::is('calendar-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('calendar-example') }}"><i class="fas fa-calendar"></i> <span>Guru</span></a>
+                <a class="nav-link" href="{{ url('guru') }}"><i class="fas fa-calendar"></i> <span>Guru</span></a>
             </li>
             <li class="{{ Request::is('berita') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('berita') }}"><i class="fas fa-images"></i> <span>Berita</span></a>
