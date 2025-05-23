@@ -21,21 +21,7 @@
 
             <div class="row">
                 <!-- Example News Item 1 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Breaking News: Feature Update</h4>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                We are excited to announce the release of a new feature designed to enhance user experience. Click to learn more!
-                            </p>
-                        </div>
-                        <div class="card-footer text-right">
-                            <a href="#" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Example News Item 2 -->
                 <div class="col-12 col-md-6 col-lg-4">
