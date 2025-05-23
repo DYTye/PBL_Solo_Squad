@@ -3,7 +3,6 @@
 use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Siswa\SiswaController;

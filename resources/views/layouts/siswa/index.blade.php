@@ -59,8 +59,7 @@
                                                 onsubmit="return confim('yakin ingin menghapus data ini?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                {{-- <a href="{{ route('siswa.destroy', $siswa->id) }}"><button
-                                                        class="btn btn-danger ">Hapus</button></a> --}}
+                                              
                                             </form>
                                         </div>
                                     </td>
