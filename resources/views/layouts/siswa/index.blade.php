@@ -30,7 +30,7 @@
                                 <th>Tempat Lahir</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Kelas</th>
-                                <th>Aksi</th>
+
 
                             </tr>
                         </thead>
@@ -47,20 +47,7 @@
                                     <td>{{ $siswa->tempat_lahir }}</td>
                                     <td>{{ $siswa->tanggal_lahir }}</td>
                                     <td>{{ $siswa->kelas->nama }}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="{{ route('siswa.edit', $siswa->id) }}"><button
-                                                    class="btn btn-warning">edit
-                                                </button></a>
 
-                                            <form action="" method="POST"
-                                                onsubmit="return confim('yakin ingin menghapus data ini?')">
-                                                @csrf
-                                                @method('DELETE')
-
-                                            </form>
-                                        </div>
-                                    </td>
                             @endforeach
                             </tr>
                             </tr>

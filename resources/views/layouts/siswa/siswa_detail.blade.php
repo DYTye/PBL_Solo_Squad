@@ -22,25 +22,25 @@
                 <ul class="list-group">
                     <li class="list-group-item active">Detail Siswa</li>
                     <li class="list-group-item"><strong>NIK:</strong> {{ $siswas->nik }}</li>
-                    <li class="list-group-item"><strong>NISN:</strong>{{$siswas->nisn}}</li>
+                    <li class="list-group-item"><strong>NISN:</strong>{{ $siswas->nisn }}</li>
                     <li class="list-group-item"><strong>No KK:</strong> {{ $siswas->no_kk }}</li>
                     <li class="list-group-item"><strong>No Registrasi Akta:</strong> {{ $siswas->no_registrasi_akta }}</li>
                     <li class="list-group-item"><strong>Anak ke:</strong> {{ $siswas->anak_ke }}</li>
                     <li class="list-group-item"><strong>Jumlah Saudara:</strong> {{ $siswas->jumlah_saudara }}</li>
-                    <li class="list-group-item"><strong>Tahun Ajar: </strong>{{ $siswas->tahun_ajar}}</li>
-                    <li class="list-group-item"><strong>Agama:</strong>{{$siswas->agama}}</li>
+                    <li class="list-group-item"><strong>Tahun Ajar: </strong>{{ $siswas->tahun_ajar }}</li>
+                    <li class="list-group-item"><strong>Agama:</strong>{{ $siswas->agama }}</li>
                     <li class="list-group-item"><strong>Berat Badan:</strong> {{ $siswas->berat_badan }} kg</li>
                     <li class="list-group-item"><strong>Tinggi Badan:</strong> {{ $siswas->tinggi_badan }} cm</li>
                     <li class="list-group-item"><strong>Lingkar Kepala:</strong> {{ $siswas->lingkar_kepala }} cm</li>
-                    <li class="list-group-item"><strong>Kebutuhan Khusus:</strong>{{$siswas->kebutuhan_khusus}}</li>
-                    <li class="list-group-item"><strong>Sekolah Asal:</strong>{{$siswas->sekolah_asal}}</li>
+                    <li class="list-group-item"><strong>Kebutuhan Khusus:</strong>{{ $siswas->kebutuhan_khusus }}</li>
+                    <li class="list-group-item"><strong>Sekolah Asal:</strong>{{ $siswas->sekolah_asal }}</li>
                     <li class="list-group-item active">Bantuan Siswa</li>
                     <li class="list-group-item"><strong>Jenis Tinggal:</strong> {{ $siswas->jenis_tinggal }}</li>
                     <li class="list-group-item"><strong>Alat Transportasi:</strong> {{ $siswas->alat_transportasi }}</li>
                 </ul>
 
                 <ul class="list-group">
-                   
+
                     <li class="list-group-item"><strong>Penerima KPS:</strong>
                         {{ $siswas->penerima_kps ? 'Ya' : 'Tidak' }}</li>
                     <li class="list-group-item"><strong>No KPS:</strong> {{ $siswas->no_kps ?? '-' }}</li>
@@ -103,6 +103,23 @@
                     <li class="list-group-item"><strong>Pekerjaan:</strong> {{ $orangtua->pekerjaan_wali }}</li>
                     <li class="list-group-item"><strong>Penghasilan:</strong> {{ $orangtua->penghasilan_wali }}</li>
                 </ul>
+
+
+
+                <div class="row d-flex gap-2 mx-2">
+                    <a href="{{ route('siswa.edit', $siswas->id) }}" class="btn btn-warning">
+                        Edit
+                    </a>
+                
+                    <form action="{{ route('siswa.destroy', $siswas->id) }}" method="POST" onsubmit="return confirm('Yakin mau hapus data siswa ini?')" >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
+                
 
 
 
