@@ -44,27 +44,14 @@ return new class extends Migration
             $table->text('alasan_layak_pip')->nullable();
             $table->string('tahun_ajar');
             $table->string('agama', 15);
-<<<<<<< Updated upstream:database/migrations/2025_05_16_074724_create_siswas__table.php
-            $table->unsignedBigInteger('id_ibu');
-            $table->unsignedBigInteger('id_ayah');
-            $table->unsignedBigInteger('id_wali');
-=======
             $table->unsignedBigInteger('kelas_id');//->nullable();
             $table->foreignId('orangtua_id')->references('id')->on('orangtuas')->onDelete('cascade');
->>>>>>> Stashed changes:database/migrations/2025_05_16_074724_create_siswas_table.php
             $table->string('kebutuhan_khusus')->nullable();
             $table->string('sekolah_asal')->nullable();
             $table->string('nisn', 25)->unique();
             $table->timestamps();
     
-<<<<<<< Updated upstream:database/migrations/2025_05_16_074724_create_siswas__table.php
-            // foreign key (pastikan tabel ibu, ayah, walis sudah ada)
-            // $table->foreign('id_ibu')->references('id')->on('ibu')->onDelete('restrict');
-            // $table->foreign('id_ayah')->references('id')->on('ayah')->onDelete('restrict');
-            // $table->foreign('id_wali')->references('id')->on('walis')->onDelete('restrict');
-=======
     
->>>>>>> Stashed changes:database/migrations/2025_05_16_074724_create_siswas_table.php
         });
     }
     

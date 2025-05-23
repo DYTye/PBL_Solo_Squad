@@ -5,12 +5,8 @@ namespace Database\Seeders;
 use App\Models\Guru;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
-<<<<<<< Updated upstream
-use App\Models\Siswa;
-=======
 use App\Models\Siswa\Siswa;
 use App\Models\Siswa\orangtua;
->>>>>>> Stashed changes
 use Illuminate\Database\Seeder;
 use App\Models\siswa\SiswasAlamat;
 use App\Models\siswa\SiswasDetail;
@@ -31,13 +27,9 @@ class DatabaseSeeder extends Seeder
             // 'email' => 'test@example.com',
         ]);
 
-<<<<<<< Updated upstream
-        Siswa::factory()->count(10)->create();
-        Guru::factory()->count(10)->create();
-    }
-}
-=======
         // Buat siswa 10 dengan relasi ke orangtua yang sudah dibuat
+
+        $orangtuas = OrangTua::factory(10)->create();
         foreach ($orangtuas as $orangtua) {
             Siswa::factory()->create([
                 'orangtua_id' => $orangtua->id,
@@ -60,4 +52,3 @@ class DatabaseSeeder extends Seeder
         
     }
 }
->>>>>>> Stashed changes

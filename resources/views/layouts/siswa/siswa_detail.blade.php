@@ -22,7 +22,7 @@
                 <ul class="list-group">
                     <li class="list-group-item active">Detail Siswa</li>
                     <li class="list-group-item"><strong>NIK:</strong> {{ $siswas->nik }}</li>
-                    <li class="list-group-item"><strong>NISN:</strong>{{$siswas->siswa->nisn}}</li>
+                    <li class="list-group-item"><strong>NISN:</strong>{{$siswas->nisn}}</li>
                     <li class="list-group-item"><strong>No KK:</strong> {{ $siswas->no_kk }}</li>
                     <li class="list-group-item"><strong>No Registrasi Akta:</strong> {{ $siswas->no_registrasi_akta }}</li>
                     <li class="list-group-item"><strong>Anak ke:</strong> {{ $siswas->anak_ke }}</li>
@@ -32,8 +32,8 @@
                     <li class="list-group-item"><strong>Berat Badan:</strong> {{ $siswas->berat_badan }} kg</li>
                     <li class="list-group-item"><strong>Tinggi Badan:</strong> {{ $siswas->tinggi_badan }} cm</li>
                     <li class="list-group-item"><strong>Lingkar Kepala:</strong> {{ $siswas->lingkar_kepala }} cm</li>
-                    <li class="list-group-item"><strong>Kebutuhan Khusus:</strong>{{$siswas->siswa->kebutuhan_khusus}}</li>
-                    <li class="list-group-item"><strong>Sekolah Asal:</strong>{{$siswas->siswa->sekolah_asal}}</li>
+                    <li class="list-group-item"><strong>Kebutuhan Khusus:</strong>{{$siswas->kebutuhan_khusus}}</li>
+                    <li class="list-group-item"><strong>Sekolah Asal:</strong>{{$siswas->sekolah_asal}}</li>
                     <li class="list-group-item active">Bantuan Siswa</li>
                     <li class="list-group-item"><strong>Jenis Tinggal:</strong> {{ $siswas->jenis_tinggal }}</li>
                     <li class="list-group-item"><strong>Alat Transportasi:</strong> {{ $siswas->alat_transportasi }}</li>

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Siswa;
 
-use App\Models\Siswa\SiswasAlamat;
 use Illuminate\Http\Request;
+use App\Models\Siswa\orangtua;
+use Illuminate\Routing\Controller;
 
-class SiswasAlamatController extends Controller
+class OrangtuaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,15 +35,16 @@ class SiswasAlamatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SiswasAlamat $siswasAlamat)
+    public function show($id)
     {
-        //
+        $orangtua = Orangtua::findOrFail($id);
+        return view('layouts.siswa.siswa_detail',compact('orangtua'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SiswasAlamat $siswasAlamat)
+    public function edit(orangtua $orangtua)
     {
         //
     }
@@ -50,7 +52,7 @@ class SiswasAlamatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SiswasAlamat $siswasAlamat)
+    public function update(Request $request, orangtua $orangtua)
     {
         //
     }
@@ -58,7 +60,7 @@ class SiswasAlamatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SiswasAlamat $siswasAlamat)
+    public function destroy(orangtua $orangtua)
     {
         //
     }

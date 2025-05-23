@@ -2,8 +2,9 @@
 
 namespace App\Models\Siswa;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Database\Factories\SiswaFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends Model
 {
@@ -48,63 +49,26 @@ class Siswa extends Model
 
         'kebutuhan_khusus',
         'sekolah_asal',
-<<<<<<< Updated upstream
-=======
         'orangtua_id',
         'agama',
         'nisn',
         
 
 
->>>>>>> Stashed changes
     ];
 
     // === RELASI KE ORANG TUA ===
-    public function ibu()
-    {
-        return $this->belongsTo(Ibu::class, 'id_ibu');
-    }
 
-<<<<<<< Updated upstream
-    public function ayah()
-    {
-        return $this->belongsTo(Ayah::class, 'id_ayah');
-    }
-=======
+
     public function kelas()
     {
     return $this->belongsTo(Kelas::class , 'kelas_id');
     }
 
->>>>>>> Stashed changes
-
-    public function wali()
-    {
-        return $this->belongsTo(Walis::class, 'id_wali');
-    }
-
-    // === RELASI DATA SISWA ===
-    public function detail()
-    {
-<<<<<<< Updated upstream
-        return $this->hasOne(SiswasDetail::class, 'id_siswa');
-    }
-
-    public function bantuan()
-    {
-        return $this->hasOne(SiswasBantuan::class, 'id_siswa');
-    }
-
-    public function alamat()
-    {
-        return $this->hasOne(SiswasAlamat::class, 'id_siswa');
-=======
-        return $this->hasOne(SiswasDetail::class, 'siswas_id');
-    }
 
 
     
-    public function siswa()
+    public function orangtua()
 {
     return $this->hasOne(Siswa::class, 'orangtua_id');
 }
@@ -114,6 +78,5 @@ class Siswa extends Model
     protected static function newFactory()
     {
         return SiswaFactory::new();
->>>>>>> Stashed changes
     }
 }

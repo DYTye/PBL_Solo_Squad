@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Table Example')
+@section('title', 'Table siswa')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -23,19 +23,6 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-<<<<<<< Updated upstream
-                                <th>nama</th>
-                                <th>nipd</th>
-                                <th>kelamin</th>
-                                <th>tempat_lahir</th>
-                                <th>tanggal_lahir</th>
-                                <th>kelas</th>
-                                <th>agama</th>
-                                <th>id_ibu</th>
-                                <th>kebutuhan_khusus</th>
-                                <th>sekolah_asal</th>
-                                <th>aksi</th>
-=======
                                 {{-- <th>No</th> --}}
                                 <th>Nama</th>
                                 <th>NIPD</th>
@@ -43,42 +30,29 @@
                                 <th>Tempat Lahir</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Kelas</th>
-                                <th>Tahun Ajar</th>
-                                <th>Agama</th>
-                                <th>Nama Ibu</th>
-                                
-
                                 <th>Aksi</th>
->>>>>>> Stashed changes
 
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($siswas as $siswa)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                            <tr onclick="window.location='{{ route('siswadetail.show', $siswa->id) }}'" style="cursor:pointer;">
+
+
+                                    {{-- <td>{{ $loop->iteration }}</td> --}}
                                     <td>{{ $siswa->nama }}</td>
-<<<<<<< Updated upstream
-                                    <td>{{ $siswa->jenis_kelamin }}</td>
-                                    <td>{{ $siswa->kelas }}</td>
-                                    <td>{{ $siswa->tanggal_lahir }}</td>
-                                    <td>{{ $siswa->alamat }}</td>
-=======
                                     <td>{{ $siswa->nipd }}</td>
                                     <td>{{ $siswa->kelamin }}</td>
                                     <td>{{ $siswa->tempat_lahir }}</td>
                                     <td>{{ $siswa->tanggal_lahir }}</td>
                                     <td>{{ $siswa->kelas->nama }}</td>
-                                    <td>{{ $siswa->tahun_ajar}}</td>
-                                    <td>{{ $siswa->agama }}</td>
-                                    <td>{{ $siswa->orangtua->nama_ibu }}</td>
+
 
  
->>>>>>> Stashed changes
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('siswa.edit', $siswa->id) }}"><button
-                                                    class="btn btn-warning ">edit
+                                                    class="btn btn-warning">edit
                                                 </button></a>
 
                                             <form action="" method="POST"
@@ -90,6 +64,7 @@
                                             </form>
                                         </div>
                                     </td>
+                                    
                             @endforeach
                             </tr>
                             </tr>
