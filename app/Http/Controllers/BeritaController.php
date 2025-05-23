@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SiswasDetail;
+use App\Models\Berita;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
-class SiswasDetailController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $beritas = Berita::all();
+        return view('layouts.berita.index',compact('beritas'));
+        
     }
 
     /**
@@ -20,7 +23,7 @@ class SiswasDetailController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.berita.create');
     }
 
     /**
@@ -28,13 +31,21 @@ class SiswasDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'judul_berita' => 'required|string|',
+            'isi_berita' => 'required|string',
+            'gambar' => 'required|image|max:2048'
+        ]);
+
+        $beritas = Berita::create($validated);
+
+        return redirect()->route('berita.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SiswasDetail $siswasDetail)
+    public function show(Berita $berita)
     {
         //
     }
@@ -42,7 +53,7 @@ class SiswasDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SiswasDetail $siswasDetail)
+    public function edit(Berita $berita)
     {
         //
     }
@@ -50,7 +61,7 @@ class SiswasDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SiswasDetail $siswasDetail)
+    public function update(Request $request, Berita $berita)
     {
         //
     }
@@ -58,7 +69,7 @@ class SiswasDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SiswasDetail $siswasDetail)
+    public function destroy(Berita $berita)
     {
         //
     }

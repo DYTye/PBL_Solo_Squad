@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="footer-left">
-        &copy; 2024 Vicky Maulana | <a href="https://www.vickymaulana.my.id">My Portofolio</a>
+        &copy; Aditya Arrofi | <a href="https://www.vickymaulana.my.id">TK Islam Nurul Falah</a>
     </div>
     <div class="footer-right">
         1.0.0

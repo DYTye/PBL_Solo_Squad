@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Siswa;
 
 
+use App\Models\siswa\Kelas;
 use App\Models\Siswa\Siswa;
 use Illuminate\Http\Request;
+use App\Models\siswa\Orangtua;
+use App\Models\siswa\SiswasDetail;
 use Illuminate\Routing\Controller;
 
 class SiswaController extends Controller
@@ -37,10 +40,14 @@ class SiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(siswa $siswa)
+    public function show($id)
     {
-        //
+            return view('layouts.siswa.siswa_detail', [
+                'siswas' => Siswa::findOrFail($id),
+                'orangtua' => Orangtua::findOrFail($id),
+            ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -48,34 +55,48 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $siswa = Siswa::findOrFail($id);
-        return view('layouts.siswa.update', compact('siswa'));
+        $kelas = Kelas::all();
+        return view('layouts.siswa.update', compact('siswa','kelas'));
     }
     
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, siswa $siswa)
+    public function update(Request $request, Siswa $siswa)
     {
-        $request->validate([
-            'nama'=>'required',
-            'nomor_induk_siswa'=>'required',
-            'jenis_kelamin'=>'required',
-            'kelas'=>'required',
-            'tanggal_lahir'=>'required',
-            'alamat'=>'required',  
+
+        $validated = $request->validate([
+            'nama' => 'required',
+            'nipd' => 'required',
+            'kelamin' => 'required',
+            'nisn' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'kelas' => 'required',
+            'agama' => 'required',
+            // 'id_ibu' => 'required',
+            // 'id_ayah' => 'required',
+            // 'id_wali' => 'required',
+            'kebutuhan_khusus' => 'nullable|string',
+            'sekolah_asal' => 'nullable|string',
+            // 'orangtua_id' => 'required',
         ]);
-        $siswa = Siswa::all();
-        $siswa = Siswa::findorFail($id);
+    
         $siswa->update($validated);
-        return redirect()->route('siswa.index')->with('success', 'data berhasil di edit');
+    
+        return redirect()->route('siswa.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(siswa $siswa)
+    public function destroy($id)
     {
-        //
+        $siswa = Siswa::findOrFail($id);
+        $siswa->delete();
+    
+        return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil dihapus.');
     }
+    
 }

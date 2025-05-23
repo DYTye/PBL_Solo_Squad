@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
-use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProfileController;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\Siswa\SiswaController;
+use App\Http\Controllers\Siswa\SiswasDetailController;
+>>>>>>> Stashed changes
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,7 +20,13 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/siswa',SiswaController::class);
+<<<<<<< Updated upstream
     Route::resource('/guru',GuruController::class);
+=======
+    Route::resource('berita',BeritaController::class);
+    
+    Route::resource('siswadetail',SiswaController::class);
+>>>>>>> Stashed changes
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
