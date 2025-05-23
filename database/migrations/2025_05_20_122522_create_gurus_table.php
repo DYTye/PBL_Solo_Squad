@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('tempat_lahir', 255)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('agama', 15)->nullable();
-            $table->string('hp', 15)->nullable();
+            $table->string('hp')->nullable();
             $table->string('email', 50)->nullable();
             $table->string('nama_pasangan', 50)->nullable();
             $table->string('nip_pasangan', 20)->nullable();
