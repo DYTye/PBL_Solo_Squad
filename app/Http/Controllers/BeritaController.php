@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Siswa;
+namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class BeritaController extends Controller
