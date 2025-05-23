@@ -34,14 +34,11 @@
             <li class="{{ Request::is('siswa') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('siswa') }}"><i class="fas fa-table"></i> <span>Siswa</span></a>
             </li>
-            <li class="{{ Request::is('clock-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('clock-example') }}"><i class="fas fa-clock"></i> <span>Orang Tua dan Wali</span></a>
-            </li>
             <li class="{{ Request::is('calendar-example') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('guru') }}"><i class="fas fa-calendar"></i> <span>Guru</span></a>
             </li>
-            <li class="{{ Request::is('gallery-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('gallery-example') }}"><i class="fas fa-images"></i> <span>Berita</span></a>
+            <li class="{{ Request::is('berita') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('berita') }}"><i class="fas fa-images"></i> <span>Berita</span></a>
             </li>
             <li class="{{ Request::is('chart-example') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('chart-example') }}"><i class="fas fa-chart-bar"></i> <span>SPP</span></a>
