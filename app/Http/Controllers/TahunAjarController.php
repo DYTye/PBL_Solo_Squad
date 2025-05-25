@@ -41,7 +41,7 @@ class TahunAjarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tahun_ajar $tahun_ajar)
+    public function show(Tahunajar $Tahunajar)
     {
         //
     }
@@ -49,7 +49,7 @@ class TahunAjarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tahun_ajar $tahun_ajar)
+    public function edit(Tahunajar $Tahunajar)
     {
         //
     }
@@ -57,7 +57,7 @@ class TahunAjarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, tahun_ajar $tahun_ajar)
+    public function update(Request $request, Tahunajar $Tahunajar)
     {
         //
     }
@@ -65,7 +65,7 @@ class TahunAjarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tahun_ajar $tahun_ajar)
+    public function destroy(Tahunajar $Tahunajar)
     {
         //
     }
