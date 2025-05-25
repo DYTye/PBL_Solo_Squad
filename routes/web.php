@@ -10,6 +10,9 @@ use App\Http\Controllers\Siswa\SiswasDetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HakaksesController;
 use App\Http\Controllers\Guru\GuruController;
+use App\Http\Controllers\SuratController;
+use App\Http\Controllers\TahunAjarController;
+use App\Models\Tahun_ajar;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +22,9 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/siswa',SiswaController::class);
-    Route::resource('berita',BeritaController::class);
+    Route::resource('/berita',BeritaController::class);
+    Route::resource('/surat',SuratController::class);
+    Route::resource('/tahunajar', TahunAjarController::class);
     
     // Guru (CRUD + Detail)
     Route::resource('guru', GuruController::class);
@@ -33,43 +38,22 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/password', [ProfileController::class, 'password'])->name('profile.password');
     Route::get('/blank-page', [App\Http\Controllers\HomeController::class, 'blank'])->name('blank');
 
-    // Home
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/hakakses', [App\Http\Controllers\HakaksesController::class, 'index'])->name('hakakses.index')->middleware('superadmin');
+    Route::get('/hakakses/edit/{id}', [App\Http\Controllers\HakaksesController::class, 'edit'])->name('hakakses.edit')->middleware('superadmin');
+    Route::put('/hakakses/update/{id}', [App\Http\Controllers\HakaksesController::class, 'update'])->name('hakakses.update')->middleware('superadmin');
+    Route::delete('/hakakses/delete/{id}', [App\Http\Controllers\HakaksesController::class, 'destroy'])->name('hakakses.delete')->middleware('superadmin');
 
-    // Profile
-    Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
-        Route::put('/update', [ProfileController::class, 'update'])->name('update');
-        Route::get('/change-password', [ProfileController::class, 'changepassword'])->name('change-password');
-        Route::put('/password', [ProfileController::class, 'password'])->name('password');
-    });
-
-
-    // Hak Akses (Superadmin Only)
-    Route::middleware(['superadmin'])->prefix('hakakses')->name('hakakses.')->group(function () {
-        Route::get('/', [HakaksesController::class, 'index'])->name('index');
-        Route::get('/edit/{id}', [HakaksesController::class, 'edit'])->name('edit');
-        Route::put('/update/{id}', [HakaksesController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [HakaksesController::class, 'destroy'])->name('delete');
-    });
-
-    // Contoh Halaman
-    Route::prefix('example')->name('example.')->group(function () {
-        Route::get('/table', [ExampleController::class, 'table'])->name('table');
-        Route::get('/clock', [ExampleController::class, 'clock'])->name('clock');
-        Route::get('/chart', [ExampleController::class, 'chart'])->name('chart');
-        Route::get('/form', [ExampleController::class, 'form'])->name('form');
-        Route::get('/map', [ExampleController::class, 'map'])->name('map');
-        Route::get('/calendar', [ExampleController::class, 'calendar'])->name('calendar');
-        Route::get('/gallery', [ExampleController::class, 'gallery'])->name('gallery');
-        Route::get('/todo', [ExampleController::class, 'todo'])->name('todo');
-        Route::get('/contact', [ExampleController::class, 'contact'])->name('contact');
-        Route::get('/faq', [ExampleController::class, 'faq'])->name('faq');
-        Route::get('/news', [ExampleController::class, 'news'])->name('news');
-        Route::get('/about', [ExampleController::class, 'about'])->name('about');
-    });
-
-    // Halaman Kosong
-    Route::get('/blank-page', [HomeController::class, 'blank'])->name('blank');
+    Route::get('/table-example', [App\Http\Controllers\ExampleController::class, 'table'])->name('table.example');
+    Route::get('/clock-example', [App\Http\Controllers\ExampleController::class, 'clock'])->name('clock.example');
+    Route::get('/chart-example', [App\Http\Controllers\ExampleController::class, 'chart'])->name('chart.example');
+    Route::get('/form-example', [App\Http\Controllers\ExampleController::class, 'form'])->name('form.example');
+    Route::get('/map-example', [App\Http\Controllers\ExampleController::class, 'map'])->name('map.example');
+    Route::get('/calendar-example', [App\Http\Controllers\ExampleController::class, 'calendar'])->name('calendar.example');
+    Route::get('/gallery-example', [App\Http\Controllers\ExampleController::class, 'gallery'])->name('gallery.example');
+    Route::get('/todo-example', [App\Http\Controllers\ExampleController::class, 'todo'])->name('todo.example');
+    Route::get('/contact-example', [App\Http\Controllers\ExampleController::class, 'contact'])->name('contact.example');
+    Route::get('/faq-example', [App\Http\Controllers\ExampleController::class, 'faq'])->name('faq.example');
+    Route::get('/news-example', [App\Http\Controllers\ExampleController::class, 'news'])->name('news.example');
+    Route::get('/about-example', [App\Http\Controllers\ExampleController::class, 'about'])->name('about.example');
 });
 

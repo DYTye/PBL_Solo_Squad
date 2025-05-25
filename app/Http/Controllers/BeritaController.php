@@ -39,7 +39,6 @@ class BeritaController extends Controller
         ]);
 
         $beritas = Berita::create($validated);
-
         return redirect()->route('berita.index');
     }
 
@@ -48,16 +47,7 @@ class BeritaController extends Controller
      */
     public function show(Berita $berita)
     {
-        $siswa = Siswa::with(['alamat', 'orangtua', 'detail', 'bantuan'])->findOrFail($id);
 
-
-
-        return view('layouts.siswa.siswa_detail', [
-            'sAlamat' => $siswa->alamat,
-            'orangtua' => $siswa->orangtua,
-            'sDetail' => $siswa->detail,
-            'sBantuan' => $siswa->bantuan,
-        ]);
         
 
       

@@ -43,11 +43,11 @@
             <li class="{{ Request::is('chart-example') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('chart-example') }}"><i class="fas fa-chart-bar"></i> <span>SPP</span></a>
             </li>
-            <li class="{{ Request::is('form-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('form-example') }}"><i class="fas fa-file-alt"></i> <span>Raport</span></a>
+            <li class="{{ Request::is('tahunajar') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('tahunajar') }}"><i class="fas fa-file-alt"></i> <span>Tahun Ajar</span></a>
             </li>
-            <li class="{{ Request::is('map-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('map-example') }}"><i class="fas fa-map"></i> <span>Surat Masuk dan Keluar</span></a>
+            <li class="{{ Request::is('surat') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('surat') }}"><i class="fas fa-map"></i> <span>Surat Masuk dan Keluar</span></a>
             </li>
             <br>
             <br>

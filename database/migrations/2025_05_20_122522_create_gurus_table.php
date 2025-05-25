@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('email', 50)->nullable();
             $table->string('nama_pasangan', 50)->nullable();
             $table->string('nip_pasangan', 20)->nullable();
-            $table->string('pekerjaan_pasangan', 50)->nullable();
+            $table->string('pekerjaan_pasangan')->nullable();
             $table->string('status_kepegawaian', 20)->nullable();
             $table->string('jenis_ptk', 50)->nullable();
             $table->string('npwp', 20)->nullable();
