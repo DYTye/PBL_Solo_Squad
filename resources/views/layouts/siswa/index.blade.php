@@ -13,11 +13,11 @@
                 <h1>Data Siswa</h1>
             </div>
 
-            <div class="section-body">
+            {{-- <div class="section-body">
                 <h2 class="section-title">Data siswa</h2>
                 <p class="section-lead">
                     This page is an example of using a table.
-                </p>
+                </p> --}}
 
                 <div class="table-responsive">
                     <table class="table table-striped">

@@ -19,7 +19,7 @@
                 <h2 class="section-title">Detail Siswa</h2>
                 <p class="section-lead">Detail</p> --}}
 
-                <ul class="list-group">
+                <ul class="list-group mb-3">
                     <li class="list-group-item active">Detail Siswa</li>
                     <li class="list-group-item"><strong>NIK:</strong> {{ $siswas->nik }}</li>
                     <li class="list-group-item"><strong>NISN:</strong>{{ $siswas->nisn }}</li>
@@ -34,13 +34,12 @@
                     <li class="list-group-item"><strong>Lingkar Kepala:</strong> {{ $siswas->lingkar_kepala }} cm</li>
                     <li class="list-group-item"><strong>Kebutuhan Khusus:</strong>{{ $siswas->kebutuhan_khusus }}</li>
                     <li class="list-group-item"><strong>Sekolah Asal:</strong>{{ $siswas->sekolah_asal }}</li>
+
+                </ul>
+                <ul class="list-group mb-3">
                     <li class="list-group-item active">Bantuan Siswa</li>
                     <li class="list-group-item"><strong>Jenis Tinggal:</strong> {{ $siswas->jenis_tinggal }}</li>
                     <li class="list-group-item"><strong>Alat Transportasi:</strong> {{ $siswas->alat_transportasi }}</li>
-                </ul>
-
-                <ul class="list-group">
-
                     <li class="list-group-item"><strong>Penerima KPS:</strong>
                         {{ $siswas->penerima_kps ? 'Ya' : 'Tidak' }}</li>
                     <li class="list-group-item"><strong>No KPS:</strong> {{ $siswas->no_kps ?? '-' }}</li>
@@ -57,7 +56,7 @@
 
 
 
-                <ul class="list-group">
+                <ul class="list-group mb-3">
                     <li class="list-group-item active">Alamat Siswa</li>
                     <li class="list-group-item"><strong>Jalan:</strong> {{ $siswas->jalan }}</li>
                     <li class="list-group-item"><strong>RT:</strong> {{ $siswas->rt }}</li>
@@ -107,7 +106,7 @@
 
 
                 <div class="row d-flex gap-2 mx-2">
-                    <a href="{{ route('siswa.edit', $siswas->id) }}" class="btn btn-warning">
+                    <a href="{{ route('siswa.edit', $siswas->id) }}" class="btn btn-warning mr-2">
                         Edit
                     </a>
                 

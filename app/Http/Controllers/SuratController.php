@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
+use App\Models\Surat;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Symfony\Contracts\Service\Attribute\Required;
 
-class BeritaController extends Controller
+class SuratController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $beritas = Berita::all();
-        return view('layouts.berita.index',compact('beritas'));
-        
+        $surats = Surat::all();
+        return view('layouts.surat.index',compact('surats'));
     }
 
     /**
@@ -24,7 +21,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('layouts.berita.create');
+        return view('layouts.surat.create');
     }
 
     /**
@@ -33,30 +30,28 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul_berita' => 'required|string|',
-            'isi_berita' => 'required|string',
-            'gambar' => 'required|image|max:2048'
-        ]);
-
-        $beritas = Berita::create($validated);
-        return redirect()->route('berita.index');
+            'kategori' => 'required|string',
+            'tanggal'=> 'required|date',
+            'perihal'=>'required|string',
+            'judul_surat'=>'required|string', 
+            'lampiran'=>'required|string', 
+        ]); 
+        $surats = Surat::create($validated);
+        return redirect()->route('surat.index');    
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Berita $berita)
+    public function show(Surat $surat)
     {
-
-        
-
-      
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Berita $berita)
+    public function edit(Surat $surat)
     {
         //
     }
@@ -64,7 +59,7 @@ class BeritaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, Surat $surat)
     {
         //
     }
@@ -72,7 +67,7 @@ class BeritaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Berita $berita)
+    public function destroy(Surat $surat)
     {
         //
     }

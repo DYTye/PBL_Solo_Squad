@@ -11,6 +11,7 @@
             <div class="section-header">
                 <h1>Berita</h1>
             </div>
+            <a href="{{url('berita/create')}}" class="btn btn-primary my-3">Tambah Berita</a>
             <div class="row">
                 @foreach ($beritas as $berita)
                     <div class="col-12 col-md-6 col-lg-4">
@@ -29,7 +30,7 @@
                     </div>
                 @endforeach
             </div>
-            <a href="{{url('berita/create')}}" class="btn btn-primary">Tambah Berita</a>
+            
             
         </section>
     </div>

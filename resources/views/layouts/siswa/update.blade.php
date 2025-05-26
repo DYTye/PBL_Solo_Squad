@@ -131,7 +131,7 @@
                             
                 <div class="mb-3">
                     <label for="kelas" class="form-label">Kelas</label>
-                    <select name="kelas" class="form-control" id="kelas" required>
+                    <select name="kelas_id" class="form-control" id="kelas" required>
                         @foreach($kelas as $item)
                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach

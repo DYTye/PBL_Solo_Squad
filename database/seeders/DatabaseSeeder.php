@@ -17,11 +17,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        User::factory()->create();
         $this->call([
             GuruSeeder::class,
         ]);
-        $orangtuas = Orangtua::factory()->count(10)->create();
-
         // Buat siswa 10 dengan relasi ke orangtua yang sudah dibuat
 
         $orangtuas = OrangTua::factory(10)->create();
