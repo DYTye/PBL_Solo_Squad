@@ -9,7 +9,7 @@ class SPP extends Model
 {
     protected $table = 'spps';
     protected $fillable = [
-        'siswas_id',
+        'siswa_id',
         'tahun_ajar_id',
         'tanggal',
         'jumlah',
@@ -24,6 +24,6 @@ class SPP extends Model
 
     public function siswa()
     {
-        return $this->hasOne(Siswa::class,'tahun_ajar_id');
+        return $this->belongsTo(Siswa::class,'siswa_id');
     }
 }

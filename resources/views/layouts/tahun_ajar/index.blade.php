@@ -24,10 +24,19 @@
 
             <tbody>
                 @foreach($tahun_ajar as $tahun_ajar)
-                <td>{{$tahun_ajar->id}}</td>
-                <td>{{$tahun_ajar->nama_tahun_ajar}}</td>
-                <td>{{$tahun_ajar->semester}}</td>
-                <td>{{$tahun_ajar->status}}</td>
+                <tr>
+                    <td>{{$tahun_ajar->id}}</td>
+                    <td>{{$tahun_ajar->nama_tahun_ajar}}</td>
+                    <td>{{$tahun_ajar->semester}}</td>
+                    <td>
+                        @if($tahun_ajar->status == 'aktif')
+                            <span class="badge badge-success">Aktif</span>
+                        @elseif($tahun_ajar->status == 'nonaktif')
+                            <span class="badge badge-danger">Non-Aktif</span>
+                        @endif
+                    </td>
+                </tr>
+
                 @endforeach
             </tbody>
         </table>
