@@ -36,7 +36,7 @@ class TahunAjarController extends Controller
 
         ]);
         $tahun_ajar = Tahunajar::create($validated);
-        return redirect()->route('siswa.index');
+        return redirect()->route('tahunajar.index');
     }
 
     /**

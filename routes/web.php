@@ -27,7 +27,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/berita',BeritaController::class);
     Route::resource('/surat',SuratController::class);
     Route::resource('/tahunajar',TahunAjarController::class);
-    Route::resource('/spp',SPPController::class);
+// Kustom (disarankan kalau ingin lebih fleksibel)
+Route::get('/spp', [SPPController::class, 'index'])->name('spp.index');
+Route::get('/spp/create', [SPPController::class, 'create'])->name('spp.create');
+Route::get('/spp/form', [SPPController::class, 'form'])->name('spp.form'); // untuk cari siswa
+Route::post('/spp', [SPPController::class, 'store'])->name('spp.store');
+
+
     
     
 

@@ -23,11 +23,6 @@ class DatabaseSeeder extends Seeder
         ]);
         // Buat siswa 10 dengan relasi ke orangtua yang sudah dibuat
 
-        $orangtuas = OrangTua::factory(10)->create();
-        foreach ($orangtuas as $orangtua) {
-            Siswa::factory()->create([
-                'orangtua_id' => $orangtua->id,
-            ]);
         
 
         DB::table('kelas')->insert([
@@ -39,6 +34,13 @@ class DatabaseSeeder extends Seeder
             ['nama' => 'B5'],
             ['nama' => 'B6'],
         ]);
+
+        
+        $orangtuas = OrangTua::factory(10)->create();
+        foreach ($orangtuas as $orangtua) {
+            Siswa::factory()->create([
+                'orangtua_id' => $orangtua->id,
+            ]);
         
         
 
