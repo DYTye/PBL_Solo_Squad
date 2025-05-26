@@ -12,7 +12,8 @@ class TahunAjarController extends Controller
      */
     public function index()
     {
-        //
+        $tahun_ajar = Tahunajar::all();
+        return view('layouts.tahun_ajar.index',compact('tahun_ajar'));
     }
 
     /**

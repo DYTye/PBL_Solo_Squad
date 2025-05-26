@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SPP;
+use App\Models\Tahunajar;
 use Illuminate\Http\Request;
 
 class SPPController extends Controller
@@ -12,7 +13,7 @@ class SPPController extends Controller
      */
     public function index()
     {
-        //
+        return view('layouts.spp.index');
     }
 
     /**
@@ -20,7 +21,10 @@ class SPPController extends Controller
      */
     public function create()
     {
-        return view('layouts.spp.create');
+        $tahun_ajar = Tahunajar::where('status', 'aktif')->first();
+
+        return view('layouts.spp.create', compact('tahun_ajar'));
+        
     }
 
     /**
@@ -28,7 +32,16 @@ class SPPController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'siswa_id' => 'required|string',
+            'tahun_ajar_id'=> 'required|string',
+            'tanggal'=>'required|date',
+            'jumlah'=>'required|string', 
+            'bukti_pembayaran'=>'required|string', 
+            'keterangan'=>'required|string', 
+        ]); 
+        $spps = SPP::create($validated);
+        return redirect()->route('surat.index');  
     }
 
     /**
@@ -62,4 +75,5 @@ class SPPController extends Controller
     {
         //
     }
+    
 }

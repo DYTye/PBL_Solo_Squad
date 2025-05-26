@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\BeritaController;
+use App\Models\SPP;
+use App\Models\Tahun_ajar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SPPController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SuratController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Siswa\SiswaController;
-use App\Http\Controllers\Siswa\SiswasDetailController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HakaksesController;
 use App\Http\Controllers\Guru\GuruController;
-use App\Http\Controllers\SuratController;
 use App\Http\Controllers\TahunAjarController;
-use App\Models\Tahun_ajar;
+use App\Http\Controllers\Siswa\SiswaController;
+use App\Http\Controllers\Siswa\SiswasDetailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,8 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/siswa',SiswaController::class);
     Route::resource('/berita',BeritaController::class);
     Route::resource('/surat',SuratController::class);
-    Route::resource('/tahunajar', TahunAjarController::class);
+    Route::resource('/tahunajar',TahunAjarController::class);
+    Route::resource('/spp',SPPController::class);
     
+    
+
     // Guru (CRUD + Detail)
     Route::resource('guru', GuruController::class);
     Route::get('/guru/{id}/detail', [GuruController::class, 'detail'])->name('guru.detail');
