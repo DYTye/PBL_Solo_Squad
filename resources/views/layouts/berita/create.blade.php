@@ -51,6 +51,7 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>
+            <a href="{{ route('berita.index') }}" class="btn btn-secondary mt-3">← Kembali ke daftar</a>
     </div>
     </section>
 @endsection

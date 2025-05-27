@@ -26,10 +26,9 @@
                         <th>NUPTK</th>
                         <th>NIP</th>
                         <th>Jenis Kelamin</th>
-                        <th>Tempat Lahir</th>
                         <th>Tanggal Lahir</th>
-                        <th>Agama</th>
-                        <th>HP</th>
+                        <th>Jabatan</th>
+                        <th>Status</th>
                         <th>Email</th>
                     </tr>
                 </thead>
@@ -38,18 +37,17 @@
                     <tr onclick="window.location='{{ route('guru.detail', $guru->id) }}'" style="cursor: pointer;">
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $guru->nama }}</td>
-                        <td>{{ $guru->nuptk }}</td>
+                        <td>{{ $guru->nuptk ?? '-' }}</td>
                         <td>{{ $guru->nip ?? '-' }}</td>
                         <td>{{ $guru->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
-                        <td>{{ $guru->tempat_lahir ?? '-' }}</td>
                         <td>{{ $guru->tanggal_lahir ? $guru->tanggal_lahir->format('d-m-Y') : '-' }}</td>
-                        <td>{{ $guru->agama ?? '-' }}</td>
-                        <td>{{ $guru->hp ?? '-' }}</td>
+                        <td>{{ $guru->jabatan ?? '-' }}</td>
+                        <td>{{ $guru->status ?? '-' }}</td>
                         <td>{{ $guru->email ?? '-' }}</td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="10" class="text-center">Belum ada data guru.</td>
+                        <td colspan="7" class="text-center">Belum ada data guru.</td>
                     </tr>
                     @endforelse
                 </tbody>

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Symfony\Contracts\Service\Attribute\Required;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -15,8 +14,7 @@ class BeritaController extends Controller
     public function index()
     {
         $beritas = Berita::all();
-        return view('layouts.berita.index',compact('beritas'));
-        
+        return view('layouts.berita.index', compact('beritas'));
     }
 
     /**
@@ -33,32 +31,39 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul_berita' => 'required|string|',
+            'judul_berita' => 'required|string|max:255',
             'isi_berita' => 'required|string',
             'gambar' => 'required|image|max:2048'
         ]);
 
-        $beritas = Berita::create($validated);
-        return redirect()->route('berita.index');
+        // Simpan gambar
+        $file = $request->file('gambar');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/berita', $filename);
+
+        // Simpan berita
+        Berita::create([
+            'judul_berita' => $request->judul_berita,
+            'isi_berita' => $request->isi_berita,
+            'gambar' => $filename
+        ]);
+
+        return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Berita $berita)
     {
-
-        
-
-      
+        return view('layouts.berita.show', compact('berita'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Berita $berita)
     {
-        //
+        return view('layouts.berita.update', compact('berita'));
     }
 
     /**
@@ -66,7 +71,29 @@ class BeritaController extends Controller
      */
     public function update(Request $request, Berita $berita)
     {
-        //
+        $validated = $request->validate([
+            'judul_berita' => 'required|string|max:255',
+            'isi_berita' => 'required|string',
+            'gambar' => 'nullable|image|max:2048'
+        ]);
+
+        // Jika ada gambar baru, hapus gambar lama dan upload baru
+        if ($request->hasFile('gambar')) {
+            if ($berita->gambar && Storage::exists('public/berita/' . $berita->gambar)) {
+                Storage::delete('public/berita/' . $berita->gambar);
+            }
+
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/berita', $filename);
+            $berita->gambar = $filename;
+        }
+
+        $berita->judul_berita = $request->judul_berita;
+        $berita->isi_berita = $request->isi_berita;
+        $berita->save();
+
+        return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
     /**
@@ -74,6 +101,11 @@ class BeritaController extends Controller
      */
     public function destroy(Berita $berita)
     {
-        //
+        if ($berita->gambar && Storage::exists('public/berita/' . $berita->gambar)) {
+            Storage::delete('public/berita/' . $berita->gambar);
+        }
+
+        $berita->delete();
+        return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus.');
     }
 }

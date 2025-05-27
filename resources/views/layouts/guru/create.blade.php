@@ -5,6 +5,7 @@
 <section class="section">
     <div class="section-header">
         <h1>Tambah Guru</h1>
+        <a href="{{ route('guru.index') }}" class="btn btn-light ml-auto">Kembali ke Daftar Guru</a>
     </div>
 
     <div class="section-body">
@@ -17,36 +18,69 @@
                     @csrf
 
                     @php
+                        $textFields = [
+                            'nama' => 'Nama',
+                            'nuptk' => 'NUPTK',
+                            'nip' => 'NIP',
+                            'tempat_lahir' => 'Tempat Lahir',
+                            'agama' => 'Agama',
+                            'hp' => 'No HP',
+                            'email' => 'Email',
+                            'nama_pasangan' => 'Nama Pasangan',
+                            'nip_pasangan' => 'NIP Pasangan',
+                            'pekerjaan_pasangan' => 'Pekerjaan Pasangan',
+                            'status_kepegawaian' => 'Status Kepegawaian',
+                            'jenis_ptk' => 'Jenis PTK',
+                            'npwp' => 'NPWP',
+                            'nama_ibu_kandung' => 'Nama Ibu Kandung',
+                            'status_perkawinan' => 'Status Perkawinan',
+                            'tugas_tambahan' => 'Tugas Tambahan',
+                            'sk_cpns' => 'SK CPNS',
+                            'sk_pengangkatan' => 'SK Pengangkatan',
+                            'lembaga_pengangkatan' => 'Lembaga Pengangkatan',
+                            'pangkat_golongan' => 'Pangkat Golongan',
+                            'sumber_gaji' => 'Sumber Gaji',
+                            'jalan' => 'Jalan',
+                            'rt' => 'RT',
+                            'rw' => 'RW',
+                            'nama_dusun' => 'Nama Dusun',
+                            'desa_kelurahan' => 'Desa/Kelurahan',
+                            'kecamatan' => 'Kecamatan',
+                            'kode_pos' => 'Kode Pos',
+                        ];
+
+                        $dateFields = [
+                            'tanggal_lahir' => 'Tanggal Lahir',
+                            'tanggal_cpns' => 'Tanggal CPNS',
+                            'tmt_pns' => 'TMT PNS',
+                            'tmt_pengangkatan' => 'TMT Pengangkatan',
+                        ];
+
                         $booleanFields = [
                             'sudah_lisensi_kepala_sekolah',
                             'pernah_diklat_kepengawasan',
                             'keahlian_braille',
                             'keahlian_bahasa_isyarat',
                         ];
+
+                        $jabatanOptions = [
+                            '' => '-- Pilih Jabatan --',
+                            'Kepala Sekolah' => 'Kepala Sekolah',
+                            'Wakil Kepala Sekolah' => 'Wakil Kepala Sekolah',
+                            'Guru Mapel' => 'Guru Mapel',
+                            'Guru Kelas' => 'Guru Kelas',
+                            'Tata Usaha' => 'Tata Usaha',
+                            'Staff' => 'Staff',
+                        ];
+
+                        $statusOptions = [
+                            '' => '-- Pilih Status --',
+                            'Aktif' => 'Aktif',
+                            'Nonaktif' => 'Nonaktif',
+                        ];
                     @endphp
 
-                    @foreach ([
-                        'nama' => 'Nama',
-                        'nuptk' => 'NUPTK',
-                        'nip' => 'NIP',
-                        'tempat_lahir' => 'Tempat Lahir',
-                        'agama' => 'Agama',
-                        'hp' => 'No HP',
-                        'email' => 'Email',
-                        'nama_pasangan' => 'Nama Pasangan',
-                        'nip_pasangan' => 'NIP Pasangan',
-                        'pekerjaan_pasangan' => 'Pekerjaan Pasangan',
-                        'status_kepegawaian' => 'Status Kepegawaian',
-                        'jenis_ptk' => 'Jenis PTK',
-                        'npwp' => 'NPWP',
-                        'nama_ibu_kandung' => 'Nama Ibu Kandung',
-                        'status_perkawinan' => 'Status Perkawinan',
-                        'tugas_tambahan' => 'Tugas Tambahan',
-                        'sk_pengangkatan' => 'SK Pengangkatan',
-                        'lembaga_pengangkatan' => 'Lembaga Pengangkatan',
-                        'pangkat_golongan' => 'Pangkat Golongan',
-                        'sumber_gaji' => 'Sumber Gaji',
-                    ] as $field => $label)
+                    @foreach ($textFields as $field => $label)
                         <div class="form-group">
                             <label>{{ $label }} @if(in_array($field, ['nama', 'nuptk']))<span class="text-danger">*</span>@endif</label>
                             <input type="text" name="{{ $field }}" value="{{ old($field) }}" class="form-control @error($field) is-invalid @enderror" @if(in_array($field, ['nama', 'nuptk'])) required @endif>
@@ -55,6 +89,30 @@
                             @enderror
                         </div>
                     @endforeach
+
+                    {{-- Input select khusus untuk status (jabatan) --}}
+                    <div class="form-group">
+                        <label>Jabatan<span class="text-danger">*</span></label>
+                        <select name="jabatan" class="form-control @error('status') is-invalid @enderror" required>
+                            @foreach ($jabatanOptions as $value => $label)
+                                <option value="{{ $value }}" {{ old('status') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Status<span class="text-danger">*</span></label>
+                        <select name="status" class="form-control @error('status') is-invalid @enderror" required>
+                            @foreach ($statusOptions as $value => $label)
+                                <option value="{{ $value }}" {{ old('status') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="form-group">
                         <label>Jenis Kelamin <span class="text-danger">*</span></label>
@@ -68,15 +126,11 @@
                         @enderror
                     </div>
 
-                    @foreach ([
-                        'tanggal_lahir' => 'Tanggal Lahir',
-                        'tanggal_cpns' => 'Tanggal CPNS',
-                        'tmt_pengangkatan' => 'TMT Pengangkatan',
-                    ] as $dateField => $label)
+                    @foreach ($dateFields as $field => $label)
                         <div class="form-group">
                             <label>{{ $label }}</label>
-                            <input type="date" name="{{ $dateField }}" value="{{ old($dateField) }}" class="form-control @error($dateField) is-invalid @enderror">
-                            @error($dateField)
+                            <input type="date" name="{{ $field }}" value="{{ old($field) }}" class="form-control @error($field) is-invalid @enderror">
+                            @error($field)
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -85,10 +139,13 @@
                     @foreach ($booleanFields as $field)
                         <div class="form-group">
                             <label>{{ ucwords(str_replace('_', ' ', $field)) }}</label>
-                            <select name="{{ $field }}" class="form-control">
+                            <select name="{{ $field }}" class="form-control @error($field) is-invalid @enderror">
                                 <option value="0" {{ old($field) == '0' ? 'selected' : '' }}>Tidak</option>
                                 <option value="1" {{ old($field) == '1' ? 'selected' : '' }}>Ya</option>
                             </select>
+                            @error($field)
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     @endforeach
 

@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/siswa',SiswaController::class);
-    Route::resource('/berita',BeritaController::class);
+    Route::resource('/berita',BeritaController::class)->parameters(['berita' => 'berita']);
     Route::resource('/surat',SuratController::class);
     Route::resource('/tahunajar',TahunAjarController::class);
     Route::resource('/spp',SPPController::class);
