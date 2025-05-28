@@ -12,3 +12,4 @@ class hakakses extends Model
     protected $table = 'users';
     protected $fillable = ['role'];
 }
+

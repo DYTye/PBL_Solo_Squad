@@ -29,7 +29,11 @@
                 <td>{{$spp->siswa->nipd}}</td>
                 <td>{{$spp->tanggal}}</td>
                 <td>{{$spp->jumlah}}</td>
-                <td>{{$spp->bukti_pembayaran}}</td>
+                <td>
+                    <a href="{{ asset('storage/bukti_pembayaran/' . $spp->bukti_pembayaran) }}" target="_blank">
+                      Lihat Bukti
+                    </a>
+                  </td>
                 <td>{{$spp->keterangan}}</td>
             </tr>
             @endforeach

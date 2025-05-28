@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bulan;
 use App\Models\SPP;
 use App\Models\Tahunajar;
 use App\Models\siswa\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SPPController extends Controller
@@ -25,8 +27,10 @@ class SPPController extends Controller
     {
         $tahun_ajar = Tahunajar::where('status', 'aktif')->first();
         $siswa = null;
+        $bulans = Bulan::all();
+        $bulannow = Carbon::now()->month;
 
-        return view('layouts.spp.create', compact('tahun_ajar','siswa'));
+        return view('layouts.spp.create', compact('tahun_ajar','siswa','bulans','bulannow'));
         
     }
 
@@ -38,6 +42,7 @@ class SPPController extends Controller
     $validated = $request->validate([
         'siswa_id' => 'required|string',
         'tahun_ajar_id' => 'required|string',
+        'bulan_id' => 'required|string',
         'tanggal' => 'required|date',
         'jumlah' => 'required|string',
         'keterangan' => 'required|string',
@@ -114,10 +119,11 @@ class SPPController extends Controller
         }
     }
     
-
+    $bulannow = Carbon::now()->month;
     $tahun_ajar = Tahunajar::where('status', 'aktif')->first();
+    $bulans = Bulan::all();
 
-    return view('layouts.spp.create', compact('siswa', 'tahun_ajar'));
+    return view('layouts.spp.create', compact('siswa', 'tahun_ajar','bulans','bulannow'));
 }
 
     

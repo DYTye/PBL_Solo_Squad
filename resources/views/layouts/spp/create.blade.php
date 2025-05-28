@@ -61,6 +61,18 @@
                             <input type="text" class="form-control"
                                 value="{{ $tahun_ajar->nama_tahun_ajar }}" readonly>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="bulan">Bulan</label>
+                            <select name="bulan_id" id="bulan_id" class="form-control">
+                                @foreach ($bulans as $bulan)
+<option value="{{ $bulan->id }}" {{ $bulan->id == $bulannow ? 'selected' : '' }}>
+    {{ $bulan->bulan }}
+</option>
+
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label class="font-weight-bold">Tanggal Bayar</label>

@@ -11,6 +11,7 @@ class SPP extends Model
     protected $fillable = [
         'siswa_id',
         'tahun_ajar_id',
+        'bulan_id',
         'tanggal',
         'jumlah',
         'bukti_pembayaran',
@@ -26,4 +27,11 @@ class SPP extends Model
     {
         return $this->belongsTo(Siswa::class,'siswa_id');
     }
+
+    public function bulan()
+    {
+        return $this->belongsTo(Bulan::class,'bulan_id');
+    }
+
+    
 }

@@ -23,25 +23,25 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/siswa',SiswaController::class);
-    Route::resource('/berita',BeritaController::class);
-    Route::resource('/surat',SuratController::class);
-    Route::resource('/tahunajar',TahunAjarController::class);
-// Kustom (disarankan kalau ingin lebih fleksibel)
-Route::get('/spp', [SPPController::class, 'index'])->name('spp.index');
-Route::get('/spp/create', [SPPController::class, 'create'])->name('spp.create');
-Route::get('/spp/form', [SPPController::class, 'form'])->name('spp.form'); // untuk cari siswa
-Route::post('/spp', [SPPController::class, 'store'])->name('spp.store');
+    Route::resource('/siswa', SiswaController::class);
+    Route::resource('/berita', BeritaController::class);
+    Route::resource('/surat', SuratController::class);
+    Route::resource('/tahunajar', TahunAjarController::class);
+    // Kustom (disarankan kalau ingin lebih fleksibel)
+    Route::get('/spp', [SPPController::class, 'index'])->name('spp.index');
+    Route::get('/spp/create', [SPPController::class, 'create'])->name('spp.create');
+    Route::get('/spp/form', [SPPController::class, 'form'])->name('spp.form'); // untuk cari siswa
+    Route::post('/spp', [SPPController::class, 'store'])->name('spp.store');
 
 
-    
-    
+
+
 
     // Guru (CRUD + Detail)
     Route::resource('guru', GuruController::class);
     Route::get('/guru/{id}/detail', [GuruController::class, 'detail'])->name('guru.detail');
-    
-    Route::resource('siswadetail',SiswaController::class);
+
+    Route::resource('siswadetail', SiswaController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
@@ -67,4 +67,3 @@ Route::post('/spp', [SPPController::class, 'store'])->name('spp.store');
     Route::get('/news-example', [App\Http\Controllers\ExampleController::class, 'news'])->name('news.example');
     Route::get('/about-example', [App\Http\Controllers\ExampleController::class, 'about'])->name('about.example');
 });
-
