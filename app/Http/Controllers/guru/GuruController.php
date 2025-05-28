@@ -25,6 +25,7 @@ class GuruController extends Controller
             'nama' => 'required|string|max:50',
             'nuptk' => 'nullable|string|unique:gurus,nuptk|max:20',
             'nip' => 'nullable|string|unique:gurus,nip|max:20',
+            'jabatan' => 'nullable|string|max:50',
             'status' => 'nullable|string|max:50',
             'jenis_kelamin' => 'nullable|in:L,P',
             'tempat_lahir' => 'nullable|string|max:255',

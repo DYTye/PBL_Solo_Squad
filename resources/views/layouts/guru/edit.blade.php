@@ -96,9 +96,9 @@
                     {{-- Input select khusus untuk status (jabatan) --}}
                     <div class="form-group">
                         <label>Jabatan</label>
-                        <select name="jabatan" class="form-control @error('status') is-invalid @enderror" required>
+                        <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" required>
                             @foreach ($jabatanOptions as $value => $label)
-                                <option value="{{ $value }}" {{ old('status', $guru->status) == $value ? 'selected' : '' }}>{{ $label }}</option>
+                                <option value="{{ $value }}" {{ old('jabatan', $guru->status) == $value ? 'selected' : '' }}>{{ $label }}</option>
                             @endforeach
                         </select>
                         @error('status')
