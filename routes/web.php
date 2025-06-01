@@ -15,6 +15,7 @@ use App\Http\Controllers\Guru\GuruController;
 use App\Http\Controllers\TahunAjarController;
 use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\Siswa\SiswasDetailController;
+use App\Http\Controllers\PendaftaranSiswaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,8 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/surat',SuratController::class);
     Route::resource('/tahunajar',TahunAjarController::class);
     Route::resource('/spp',SPPController::class);
-    
-    
+    Route::resource('/pendaftaransiswa',PendaftaranSiswaController::class);
 
     // Guru (CRUD + Detail)
     Route::resource('guru', GuruController::class);

@@ -55,7 +55,7 @@
             <br>
 
             <li class="{{ Request::is('todo-example') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('todo-example') }}"><i class="fas fa-list"></i> <span>Todo Example</span></a>
+                <a class="nav-link" href="{{ url('pendaftaransiswa') }}"><i class="fas fa-list"></i> <span>daftar</span></a>
             </li>
             <li class="{{ Request::is('contact-example') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('contact-example') }}"><i class="fas fa-envelope"></i> <span>Contact Example</span></a>
