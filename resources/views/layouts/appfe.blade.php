@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -15,27 +16,32 @@
 
     <!-- Bootstrap CSS (Bootstrap 4) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
+
     <!-- Custom CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/skins/reverse.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <!-- Additional CSS (if any) -->
     @stack('css')
 </head>
-<body>
+
+<body class="sidebar-mini">
     <div id="app">
         <div class="main-wrapper">
             <!-- Header -->
-            @include('components.header')
+            @include('components.headerfe')
 
             <!-- Sidebar -->
-            @include('components.sidebar')
+            @include('components.sidebarfe')
 
             <!-- Main Content -->
             <div class="main-content">
@@ -63,7 +69,15 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
+    <!-- AOS Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
     <!-- Additional JS (if any) -->
+
     @stack('scripts')
 </body>
+
 </html>

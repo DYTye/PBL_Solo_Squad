@@ -11,14 +11,24 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HakaksesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Guru\GuruController;
 use App\Http\Controllers\TahunAjarController;
 use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\Siswa\SiswasDetailController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('dashboard',DashboardController::class);
+Route::resource('dashboard/profil',DashboardController::class);
+// routes/web.php
+Route::get('/profil', [DashboardController::class, 'profil'])->name('profil');
+Route::get('/sejarah', [DashboardController::class, 'sejarah'])->name('sejarah');
+Route::get('/beritafe', [DashboardController::class, 'berita'])->name('berita');
+
 
 Auth::routes();
 
@@ -42,6 +52,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/guru/{id}/detail', [GuruController::class, 'detail'])->name('guru.detail');
 
     Route::resource('siswadetail', SiswaController::class);
+
+
+    //FrontEnd
+   
+
+
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');

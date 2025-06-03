@@ -2,10 +2,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-        <a href="">STISLA</a>
+        <a href="">Tk Islam Nurul Falah</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-        <a href="">STISLA</a>
+        <a href="">NF</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -44,7 +44,7 @@
                 <a class="nav-link" href="{{ url('tahunajar') }}"><i class="fas fa-file-alt"></i> <span>Tahun Ajar</span></a>
             </li>
             <li class="{{ Request::is('surat') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('surat') }}"><i class="fas fa-map"></i> <span>Surat Masuk dan Keluar</span></a>
+                <a class="nav-link" href="{{ url('surat') }}"><i class="far fa-envelope"></i> <span>Surat Masuk dan Keluar</span></a>
             </li>
             <br>
             <br>

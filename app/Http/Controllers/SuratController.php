@@ -29,15 +29,26 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $validated = $request->validate([
             'kategori' => 'required|string',
             'tanggal'=> 'required|date',
             'perihal'=>'required|string',
             'judul_surat'=>'required|string', 
-            'lampiran'=>'required|string', 
-        ]); 
+            'lampiran' => 'required|file|mimes:pdf,docx,doc|max:7048',
+ 
+        ]);
+        
+        if($request->hasFile('lampiran')){
+            $file = $request->file('lampiran');
+            $path = $file->store('lampiran','public');
+            $filename = basename($path);
+            $validated['lampiran']=$filename;
+        };
         $surats = Surat::create($validated);
         return redirect()->route('surat.index');    
+        
     }
 
     /**

@@ -23,7 +23,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                {{-- <th>No</th> --}}
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>NIPD</th>
                                 <th>Kelamin</th>
@@ -40,7 +40,7 @@
                                     style="cursor:pointer;">
 
 
-                                    {{-- <td>{{ $loop->iteration }}</td> --}}
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $siswa->nama }}</td>
                                     <td>{{ $siswa->nipd }}</td>
                                     <td>{{ $siswa->kelamin }}</td>
