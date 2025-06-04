@@ -23,7 +23,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                {{-- <th>No</th> --}}
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>NIPD</th>
                                 <th>Kelamin</th>
@@ -35,12 +35,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($siswas as $siswa)
-                                <tr onclick="window.location='{{ route('siswadetail.show', $siswa->id) }}'"
-                                    style="cursor:pointer;">
-
-
-                                    {{-- <td>{{ $loop->iteration }}</td> --}}
+                            @foreach ($siswas as $index => $siswa)
+                                <tr onclick="window.location='{{ route('siswadetail.show', $siswa->id) }}'"style="cursor:pointer;">
+                                    <td>{{ $index +1 }}</td>
                                     <td>{{ $siswa->nama }}</td>
                                     <td>{{ $siswa->nipd }}</td>
                                     <td>{{ $siswa->kelamin }}</td>

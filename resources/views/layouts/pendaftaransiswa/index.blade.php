@@ -21,6 +21,7 @@
             <table class="table table-striped table-bordered" id="table-pendaftaran">
                 <thead class="thead-dark">
                     <tr>
+                        <th>No</th>
                         <th>NIK</th>
                         <th>Nama</th>
                         <th>Jenis Kelamin</th>
@@ -30,18 +31,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($pendaftaransiswas as $siswa)
-                    <tr onclick="window.location='{{ route('pendaftaransiswa.show', $siswa->id) }}'" style="cursor: pointer;">
-                        <td>{{ $siswa->nik }}</td>
-                        <td>{{ $siswa->nama_lengkap }}</td>
-                        <td>{{ $siswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
-                        <td>{{ $siswa->tempat_lahir }}, {{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->format('d-m-Y') }}</td>
-                        <td>{{ $siswa->nama_ayah ?? '-' }} / {{ $siswa->nama_ibu ?? '-' }}</td>
+                    @forelse ($pendaftaransiswas as $index =>$pendaftaransiswa)
+                    <tr onclick="window.location='{{ route('pendaftaransiswa.show', $pendaftaransiswa->id) }}'" style="cursor: pointer;">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $pendaftaransiswa->nik }}</td>
+                        <td>{{ $pendaftaransiswa->nama_lengkap }}</td>
+                        <td>{{ $pendaftaransiswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                        <td>{{ $pendaftaransiswa->tempat_lahir }}, {{ \Carbon\Carbon::parse($pendaftaransiswa->tanggal_lahir)->format('d-m-Y') }}</td>
+                        <td>{{ $pendaftaransiswa->nama_ayah ?? '-' }} / {{ $pendaftaransiswa->nama_ibu ?? '-' }}</td>
 
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">Data belum tersedia.</td>
+                        <td colspan="7" class="text-center">Data belum tersedia.</td>
                     </tr>
                     @endforelse
                 </tbody>

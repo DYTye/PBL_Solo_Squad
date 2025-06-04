@@ -52,7 +52,7 @@ class PendaftaransiswaController extends Controller
             'penghasilan_ibu' => 'nullable|numeric',
             'hp_ibu' => 'nullable',
 
-            // Wali
+            // Wali (opsional)
             'nama_wali' => 'nullable',
             'tempat_lahir_wali' => 'nullable',
             'tanggal_lahir_wali' => 'nullable|date',
