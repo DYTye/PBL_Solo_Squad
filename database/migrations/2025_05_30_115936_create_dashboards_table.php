@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surats', function (Blueprint $table) {
+        Schema::create('dashboards', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_surat');
-            $table->date('tanggal');
-            $table->enum('kategori',['masuk','keluar']);
-            $table->string('perihal');
-            $table->string('lampiran');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('surats');
+        Schema::dropIfExists('dashboards');
     }
 };

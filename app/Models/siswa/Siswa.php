@@ -2,6 +2,7 @@
 
 namespace App\Models\siswa;
 
+use App\Models\SPP;
 use Database\Factories\SiswaFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,12 +23,12 @@ class Siswa extends Model
         'kelas_id',
         'orangtua_id',
         'nik',
-        'no_registrasi_akta' ,
+        'no_registrasi_akta',
         'anak_ke',
-        'jumlah_saudara' ,
-        'no_kk' ,
-        'berat_badan' ,
-        'tinggi_badan' ,
+        'jumlah_saudara',
+        'no_kk',
+        'berat_badan',
+        'tinggi_badan',
         'lingkar_kepala',
         'tahun_ajar',
 
@@ -53,7 +54,7 @@ class Siswa extends Model
         'orangtua_id',
         'agama',
         'nisn',
-        
+
 
 
     ];
@@ -63,16 +64,21 @@ class Siswa extends Model
 
     public function kelas()
     {
-    return $this->belongsTo(Kelas::class , 'kelas_id');
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
 
 
-    
+
     public function orangtua()
-{
-    return $this->hasOne(Siswa::class, 'orangtua_id');
-}
+    {
+        return $this->hasOne(Siswa::class, 'orangtua_id');
+    }
+
+    public function spps()
+    {
+        return $this->hasMany(SPP::class, 'siswa_id');
+    }
 
 
 

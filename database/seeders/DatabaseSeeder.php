@@ -21,13 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GuruSeeder::class,
         ]);
-        // Buat siswa 10 dengan relasi ke orangtua yang sudah dibuat
+      
 
-        $orangtuas = OrangTua::factory(10)->create();
-        foreach ($orangtuas as $orangtua) {
-            Siswa::factory()->create([
-                'orangtua_id' => $orangtua->id,
-            ]);
         
 
         DB::table('kelas')->insert([
@@ -39,6 +34,28 @@ class DatabaseSeeder extends Seeder
             ['nama' => 'B5'],
             ['nama' => 'B6'],
         ]);
+
+        DB::table('bulans')->insert([
+            ['bulan'=> 'Januari'],
+            ['bulan'=> 'Februari'],
+            ['bulan'=> 'Maret'],
+            ['bulan'=> 'April'],
+            ['bulan'=> 'Mei'],
+            ['bulan'=> 'Juni'],
+            ['bulan'=> 'Juli'],
+            ['bulan'=> 'Agustus'],
+            ['bulan'=> 'September'],
+            ['bulan'=> 'Oktober'],
+            ['bulan'=> 'November'],
+            ['bulan'=> 'Desember'],
+        ]);
+
+        
+        $orangtuas = OrangTua::factory(10)->create();
+        foreach ($orangtuas as $orangtua) {
+            Siswa::factory()->create([
+                'orangtua_id' => $orangtua->id,
+            ]);
         
         
 

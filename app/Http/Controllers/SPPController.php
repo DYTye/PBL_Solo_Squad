@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bulan;
 use App\Models\SPP;
 use App\Models\Tahunajar;
+use App\Models\siswa\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SPPController extends Controller
@@ -13,7 +16,8 @@ class SPPController extends Controller
      */
     public function index()
     {
-        return view('layouts.spp.index');
+        $spps = SPP::all();
+        return view('layouts.spp.index',compact('spps'));
     }
 
     /**
@@ -22,8 +26,11 @@ class SPPController extends Controller
     public function create()
     {
         $tahun_ajar = Tahunajar::where('status', 'aktif')->first();
+        $siswa = null;
+        $bulans = Bulan::all();
+        $bulannow = Carbon::now()->month;
 
-        return view('layouts.spp.create', compact('tahun_ajar'));
+        return view('layouts.spp.create', compact('tahun_ajar','siswa','bulans','bulannow'));
         
     }
 
@@ -31,18 +38,38 @@ class SPPController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'siswa_id' => 'required|string',
-            'tahun_ajar_id'=> 'required|string',
-            'tanggal'=>'required|date',
-            'jumlah'=>'required|string', 
-            'bukti_pembayaran'=>'required|string', 
-            'keterangan'=>'required|string', 
-        ]); 
-        $spps = SPP::create($validated);
-        return redirect()->route('surat.index');  
+{
+    $validated = $request->validate([
+        'siswa_id' => 'required|string',
+        'tahun_ajar_id' => 'required|string',
+        'bulan_id' => 'required|string',
+        'tanggal' => 'required|date',
+        'jumlah' => 'required|string',
+        'keterangan' => 'required|string',
+        'bukti_pembayaran' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    if ($request->hasFile('bukti_pembayaran')) {
+        $file = $request->file('bukti_pembayaran');
+
+        // simpan file ke storage/app/public/bukti_pembayaran
+        // jangan lupa jalankan php artisan storage:link kalau belum
+        $path = $file->store('bukti_pembayaran', 'public');
+
+
+        // ambil nama file saja, supaya disimpan di DB
+        $filename = basename($path);
+
+        // update data validasi supaya kolom 'bukti_pembayaran' menyimpan nama file
+        $validated['bukti_pembayaran'] = $filename;
     }
+
+    // Simpan data ke database hanya sekali, sudah lengkap dengan nama file
+    SPP::create($validated);
+
+    return redirect()->route('spp.index')->with('success', 'Data berhasil disimpan!');
+}
+
 
     /**
      * Display the specified resource.
@@ -75,5 +102,29 @@ class SPPController extends Controller
     {
         //
     }
+
+    public function form(Request $request)
+{
+    $nipd = $request->query('nipd');
+    $siswa = null;
+
+    if ($nipd) {
+        $siswa = Siswa::where('nipd', $nipd)->first();
+
+        if (!$siswa) {
+            // Redirect kembali dengan pesan error
+            return redirect()->route('spp.form')
+                             ->withInput()
+                             ->withErrors(['nipd' => 'Data siswa dengan NIPD tersebut tidak ditemukan']);
+        }
+    }
+    
+    $bulannow = Carbon::now()->month;
+    $tahun_ajar = Tahunajar::where('status', 'aktif')->first();
+    $bulans = Bulan::all();
+
+    return view('layouts.spp.create', compact('siswa', 'tahun_ajar','bulans','bulannow'));
+}
+
     
 }

@@ -6,3 +6,4 @@
  */
 
 "use strict";
+<script src="https://kit.fontawesome.com/ff243ad412.js" crossorigin="anonymous"></script>

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('spps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswas_id')->references('id')->on('siswas')->onDelete('cascade');
-            $table->foreignId('tahun_ajar')->references('id')->on('tahun_ajar')->onDelete('casade');
+            $table->foreignId('siswa_id')->references('id')->on('siswas')->onDelete('cascade');
+            $table->foreignId('tahun_ajar_id')->references('id')->on('tahun_ajars')->onDelete('cascade');
+            $table->foreignId('bulan_id')->references('id')->on('bulans')->onDelete('cascade');
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->string('bukti_pembayaran');

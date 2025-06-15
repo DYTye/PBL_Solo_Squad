@@ -20,15 +20,19 @@
                             <th>Judul Surat</th>
                             <th>Kategori</th>
                             <th>Perihal</th>
+                            <th>Lampiran</th>
                         </thead>
 
                         <tbody>
                             @foreach($surats as $surats)
-                            <td>{{$iteration}}</td>
-                            <td>{{$beritas->tanggal}}</td>
-                            <td>{{$beritas->judul}}</td>
-                            <td>{{$beritas->kategori}}</td>
-                            <td>{{$beritas->perihal}}</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$surats->tanggal}}</td>
+                            <td>{{$surats->judul_surat}}</td>
+                            <td>{{$surats->kategori}}</td>
+                            <td>{{$surats->perihal}}</td>
+                            <td>
+                                <a href="{{asset('storage/lampiran/'.$surats->lampiran)}}" >Lihat File</a>
+                            </td>
                             @endforeach
                         </tbody>
                     </table>
